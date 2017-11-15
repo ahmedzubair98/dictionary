@@ -34,23 +34,25 @@ void trie::print(trieNode *n, int minx, int maxx, int y, int ht)
 	for (int i = 0; i < ALPHABETSIZE; i++)
 	{
 		if (n->child[i])
-			myLine(x + 8*i, y, (x + minx) / 2 , y + 3*down, yellow);
-		//if (n->child[RIGHT])
-		//	myLine(x +8*i, y, (x + maxx) / 2, y + down, yellow);
+		{
+			for (int j = 0; j < ALPHABETSIZE; j++)
+			{
+				if (n->child[i]->child[j])
+					myLine(x + 15 * i + 5, y + 15, x + 15 * j + 5 , y + 3 * down, yellow);
+			}
+		}
 
 
 		char str[2];
 		str[0] = i + 'a';
 		str[1] = 0;
-		//_itoa_s(i+'a', str,10);
 		COLORREF colour = black;
 
-		if (n->child[i])
-			myDrawText(x + 8*i, y, 20, str, colour, white);
+		if (n->child[i] )
+			myDrawText(x + 15*i, y, 20, str, colour, white);
 
 		//recursive
-		print(n->child[i], minx, x, y + 3*down, ht + 1);
-		//print(n->child[RIGHT], x, maxx, y + down, ht + 1);
+		print(n->child[i], minx, maxx, y + 3*down, ht + 1);
 	}
 }
 
