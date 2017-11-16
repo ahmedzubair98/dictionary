@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string>
 #include <Windows.h>
-
+#include<conio.h>
 
 #include "stacks.h"
 #include "myconsole.h"
@@ -104,7 +104,61 @@ int main()
 	trie dictionary;
 	//call the menu here
 	//autocorrect should be called from menu
-	dictionary.read("aa.txt");
-	dictionary.printTree();
-	autoCorrect(dictionary);
+	
+	char buff[100];
+	char x;
+	cout << "1. Construct a trie\n";
+	cout << "Enter file name to read from\n";
+	cin >> buff;
+	dictionary.read(buff);
+	system("cls");
+	while (1)
+	{
+		cout << "1. Insert a word\n";
+		cout << "2. Delete a word\n";
+		cout << "3. Delete whole trie\n";
+		cout << "4. Word Suggestions\n";
+		cout << "5. Print trie\n";
+		cout << "6. Read words from file\n";
+		cout << "7. Exit\n";
+
+		x=getch();
+		system("cls");
+		if (x == '1')
+		{
+			cout << "Enter word\n";
+			cin >> buff;
+			dictionary.insertWord(buff);
+		}
+		if (x == '2')
+		{
+			cout << "Enter word\n";
+			cin >> buff;
+			dictionary.deleteWord(buff);
+		}
+		if (x == '3')
+		{
+			dictionary.~trie();
+		}
+		if (x == '4')
+		{
+			autoCorrect(dictionary);
+		}
+		if (x == '5')
+		{
+			dictionary.printTree();
+			getch();
+		}
+		if (x == '6')
+		{
+			cout << "Enter file name to read from\n";
+			cin >> buff;
+			dictionary.read(buff);
+		}
+		if (x == '7')
+		{
+			return 0;
+		}
+		system("cls");
+	}
 }
