@@ -37,7 +37,7 @@ public:
 	void read(char *str);
  
 	//destructor...you must implement the destructor also
-	~trie() { del(root, NULL, 0); delete root; };
+	~trie() { del(root, NULL, 0); };
 
 private:
 	void del(trieNode *n, trieNode *p, int i);
