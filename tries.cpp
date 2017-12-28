@@ -158,22 +158,27 @@ bool trie::deleteWord(char *word)
 	return flag;
 }
 
-void trie::del(trieNode *n,trieNode *p, int i)
+void trie::del(trieNode *n)
 {
-	if (n->isLeaf() && p)
-	{
-		delete [] n->child;
-		p->child[i] = NULL;
-		return;
-	}
-	for (int i = 0; i < ALPHABETSIZE; i++)
+	for (int i = 0; i < 26; i++)
 	{
 		if (n->child[i])
 		{
-			del(n->child[i],n, i);
+			if (n->child[i]->isLeaf())
+			{
+				delete n->child[i];
+				n->child[i] = NULL;
+			}
+			else
+			{
+				del(n->child[i]);
+				delete n->child[i];
+				n->child[i] = NULL;
+			}
 		}
 	}
 }
+
 
 void trie::getWords(char strArray[][MAXWORDSIZE], trieNode *curr, char arr[MAXWORDSIZE], int i, int &n)
 {
