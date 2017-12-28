@@ -37,10 +37,10 @@ public:
 	void read(char *str);
  
 	//destructor...you must implement the destructor also
-	~trie() { del(root, NULL, 0); };
+	~trie() { del(root); };
 
 private:
-	void del(trieNode *n, trieNode *p, int i);
+	void del(trieNode *n);
 	void getWords(char strArray[][MAXWORDSIZE], trieNode *curr, char arr[MAXWORDSIZE], int i, int &n);
 	void print(trieNode *n, int minx, int maxx, int y, int ht);
 
